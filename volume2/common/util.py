@@ -74,12 +74,12 @@ def ppmi(C, verbose=False, eps=1e-8):
 
     for i in range(C.shape[0]):
         for j in range(C.shape[1]):
-            pmi = np.log2(C[i,j] * N / (S[i] * S[j]) + eps)
+            pmi = np.log2(C[i,j] * N / (S[j] * S[i]) + eps)
             M[i,j] = max(0, pmi)
 
-        if verbose:
-            cnt+=1
-            if cnt % (total//100 + 1) == 0:
-                print('%.1f%% 완료' % (100*cnt/total))
+            if verbose:
+                cnt+=1
+                if cnt % (total//100 + 1) == 0:
+                    print('%.1f%% 완료' % (100*cnt/total))
 
     return M
